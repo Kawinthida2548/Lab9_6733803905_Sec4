@@ -1,0 +1,62 @@
+package com.example.lab9.model;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+@Entity
+public class Account {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private String accountNumber;
+    private String ownerName;
+    private Double balance;
+
+    // ต้องมี constructor เปล่า เพราะ JPA/Hibernate ใช้สร้าง object ตอนดึงข้อมูลจาก DB
+    public Account() {
+    }
+
+    public Account(String accountNumber, String ownerName, Double balance) {
+        this.accountNumber = accountNumber;
+        this.ownerName = ownerName;
+        this.balance = balance;
+    }
+
+    // Getters และ Setters จำเป็นต้องมี เพราะ Spring ใช้สิ่งเหล่านี้แปลง object เป็น JSON
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getAccountNumber() {
+        return accountNumber;
+    }
+
+    public void setAccountNumber(String accountNumber) {
+        this.accountNumber = accountNumber;
+    }
+
+    public String getOwnerName() {
+        return ownerName;
+    }
+
+    public void setOwnerName(String ownerName) {
+        this.ownerName = ownerName;
+    }
+
+    public Double getBalance() {
+        return balance;
+    }
+
+    public void setBalance(Double balance) {
+        this.balance = balance;
+    }
+}
